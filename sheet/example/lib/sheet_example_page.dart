@@ -13,6 +13,7 @@ import 'examples/sheet/fit_sheet.dart';
 import 'examples/sheet/fit_sheet_snap.dart';
 import 'examples/sheet/floating_sheet.dart';
 import 'examples/sheet/fold_screen_sheet.dart';
+import 'examples/sheet/resizable_scrollable_sheet.dart';
 import 'examples/sheet/resizable_sheet.dart';
 import 'examples/sheet/scrollable_sheet.dart';
 import 'examples/sheet/scrollable_snap_sheet.dart';
@@ -50,6 +51,8 @@ class SheetExamplesPage extends StatelessWidget {
             const SectionTitle('SCROLLING'),
             ExampleTile.sheet('Scrollabe sheet', ScrollableSheet()),
             ExampleTile.sheet('Scrollabe snap sheet', ScrollableSnapSheet()),
+            ExampleTile.sheet(
+                'Resizable and Scrollabe sheet', ResizableScrollableSheet()),
             const SectionTitle('Others'),
             ExampleTile.sheet('Floating sheet', FloatingSheet()),
             ExampleTile.sheet('Fit and Snap sheet', FitSnapSheet()),

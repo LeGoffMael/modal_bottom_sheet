@@ -6,6 +6,7 @@ import 'package:example/examples/route/examples/modal_inside_modal.dart';
 import 'package:example/examples/route/examples/modal_will_scope.dart';
 import 'package:example/examples/route/examples/modal_with_navigator.dart';
 import 'package:example/examples/route/examples/modal_with_page_view.dart';
+import 'package:example/examples/route/examples/modal_with_scroll.dart';
 import 'package:example/examples/route/modals/avatar_sheet.dart';
 import 'package:example/examples/route/modals/bar_sheet.dart';
 import 'package:example/examples/route/modals/dialog_sheet.dart';
@@ -46,6 +47,40 @@ class RouteExamplePage extends StatelessWidget {
                               CupertinoSharePage(),
                         ),
                       ),
+                    ),
+                    ListTile(
+                      title: const Text('Sheet resizable with initial extent'),
+                      onTap: () {
+                        Navigator.of(context).push(
+                          SheetRoute<void>(
+                            initialExtent: 0.7,
+                            stops: <double>[0, 0.7, 1],
+                            resizable: true,
+                            minResizableExtent: 0.7,
+                            builder: (BuildContext context) =>
+                                BookDetailsScreen(
+                              book: Book('Les Misérables', 'Victor Hugo'),
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                    ListTile(
+                      title: const Text('Sheet scrollable and resizable'),
+                      onTap: () {
+                        Navigator.of(context).push(
+                          SheetRoute<void>(
+                            initialExtent: 0.7,
+                            stops: <double>[0, 0.7, 1],
+                            resizable: true,
+                            minResizableExtent: 0.7,
+                            physics: const BouncingSheetPhysics(
+                                overflowViewport: false),
+                            builder: (BuildContext context) =>
+                                ModalWithScroll(),
+                          ),
+                        );
+                      },
                     ),
                     const SectionTitle('COMPLETE EXAMPLES'),
                     ListTile(
@@ -168,24 +203,6 @@ class RouteExamplePage extends StatelessWidget {
                             initialStop: 0.5,
                             stops: <double>[0, 0.5, 1],
                             builder: (BuildContext context) => const ModalFit(),
-                          ),
-                        );
-                      },
-                    ),
-                    ListTile(
-                      title: const Text(
-                          'Material Sheet resizable with initial extent'),
-                      onTap: () {
-                        Navigator.of(context).push(
-                          SheetRoute<void>(
-                            initialExtent: 0.7,
-                            stops: <double>[0, 0.7, 1],
-                            resizable: true,
-                            minResizableExtent: 0.7,
-                            builder: (BuildContext context) =>
-                                BookDetailsScreen(
-                              book: Book('Les Misérables', 'Victor Hugo'),
-                            ),
                           ),
                         );
                       },
