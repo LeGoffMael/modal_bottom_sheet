@@ -46,6 +46,7 @@ class SheetRoute<T> extends PageRoute<T> with DelegatedTransitionsRoute<T> {
     this.willPopThreshold = _kWillPopThreshold,
     this.decorationBuilder,
     this.resizable = false,
+    this.minResizableExtent = 0,
     RouteSettings? settings,
   })  : transitionDuration = duration ?? _kSheetTransitionDuration,
         super(settings: settings, fullscreenDialog: true);
@@ -108,6 +109,14 @@ class SheetRoute<T> extends PageRoute<T> with DelegatedTransitionsRoute<T> {
   ///
   /// The default value is `false`.
   final bool resizable;
+
+  /// If resizable true, the minimun height that the sheet can be.
+  /// The content of the sheet will be resized to fit the
+  /// available visible space until this value, after that will be
+  /// translated keeping this minimun height.
+  ///
+  /// The default value is `0`.
+  final double? minResizableExtent;
 
   @override
   final bool barrierDismissible;
@@ -207,6 +216,7 @@ class SheetRoute<T> extends PageRoute<T> with DelegatedTransitionsRoute<T> {
       physics: effectivePhysics,
       controller: sheetController,
       resizable: resizable,
+      minResizableExtent: minResizableExtent,
       child: child,
     );
   }

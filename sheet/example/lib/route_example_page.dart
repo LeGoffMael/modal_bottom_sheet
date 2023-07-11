@@ -17,7 +17,7 @@ import 'package:flutter/material.dart';
 import 'package:sheet/route.dart';
 import 'package:sheet/sheet.dart';
 
-import 'examples/route/navigation/go_router.dart';
+import 'examples/route/navigation/go_router.dart' hide Book, BookDetailsScreen;
 
 class RouteExamplePage extends StatelessWidget {
   const RouteExamplePage({super.key});
@@ -168,6 +168,24 @@ class RouteExamplePage extends StatelessWidget {
                             initialStop: 0.5,
                             stops: <double>[0, 0.5, 1],
                             builder: (BuildContext context) => const ModalFit(),
+                          ),
+                        );
+                      },
+                    ),
+                    ListTile(
+                      title: const Text(
+                          'Material Sheet resizable with initial extent'),
+                      onTap: () {
+                        Navigator.of(context).push(
+                          SheetRoute<void>(
+                            initialExtent: 0.7,
+                            stops: <double>[0, 0.7, 1],
+                            resizable: true,
+                            minResizableExtent: 0.7,
+                            builder: (BuildContext context) =>
+                                BookDetailsScreen(
+                              book: Book('Les Misérables', 'Victor Hugo'),
+                            ),
                           ),
                         );
                       },
